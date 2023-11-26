@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import HeaderMenu from '@/widgets/header/HeaderMenu.vue'
-import BurgerButton from '@/shared/button/BurgerButton.vue'
+import HeaderMenu from "@/widgets/header/HeaderMenu.vue";
+import RouterPage from "./pages/RouterPage.vue";
 </script>
 
 <template>
   <div class="main">
-    <HeaderMenu />
     <main>
-      <RouterView />
+      <RouterPage />
     </main>
     <footer></footer>
   </div>
@@ -16,7 +15,7 @@ import BurgerButton from '@/shared/button/BurgerButton.vue'
 <style scoped>
 @font-face {
   font-family: Raleway;
-  src: url('src/shared/fonts/Raleway-VariableFont_wght.ttf');
+  src: url("src/shared/fonts/Raleway-VariableFont_wght.ttf");
 }
 .main {
   font-family: Raleway, sans-serif;
