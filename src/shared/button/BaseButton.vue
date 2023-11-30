@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Button>
+    <Button class="button">
       <slot />
     </Button>
   </div>
@@ -8,4 +8,9 @@
 
 <script setup lang="ts"></script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.button {
+  background-color: black;
+  border-color: black;
+}
+</style>

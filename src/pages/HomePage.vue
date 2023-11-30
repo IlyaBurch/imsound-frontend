@@ -1,8 +1,7 @@
 <template>
-  <div class="header">
-    <div class="brand-logo">IMSOUND</div>
-    <BurgerButton class="burger" />
-  </div>
+  <aside>
+    <router-link to="/catalog">Каталог</router-link>
+  </aside>
   <div class="main">
     <p>тут будет баннер</p>
   </div>
@@ -14,20 +13,5 @@ import BurgerButton from "@/shared/button/BurgerButton.vue";
 
 <style scoped>
 .main {
-}
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.brand-logo {
-  font-weight: bold;
-  font-size: 24px;
-  padding: 24px 0 24px 16px;
-}
-
-.burger {
-  padding: 24px 16px 24px 0;
 }
 </style>

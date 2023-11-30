@@ -1,9 +1,7 @@
+import "@/app/styles/normalize.scss"
+
 import { createPinia } from 'pinia'
 import Button from 'primevue/button'
-import Dropdown from 'primevue/dropdown';
-
-import Textarea from 'primevue/textarea';
-
 import PrimeVue from 'primevue/config'
 import 'primevue/resources/themes/lara-light-blue/theme.css'
 import 'primevue/resources/primevue.min.css';

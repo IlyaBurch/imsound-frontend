@@ -1,35 +1,28 @@
 <template>
-  <div class="header">
-    <div class="brand-logo">IMSOUND</div>
+  <!-- <div class="header">
+    <router-link to="/">
+      <div class="brand-logo">IMSOUND</div>
+    </router-link>
     <BurgerButton class="burger" />
-  </div>
-  <div class="a">
-    <!-- <Dropdown
-      v-model="selectedCity"
-      :options="options"
-      optionLabel="name"
-      placeholder="Select a City"
-      :pt="{
-        root: { class: 'w-full md:w-14rem' },
-        item: ({ props, state, context }) => ({
-          class: context.selected
-            ? 'bg-primary'
-            : context.focused
-              ? 'bg-blue-100'
-              : undefined,
-        }),
-      }"
-    /> -->
-    <Textarea v-model="area" />
+  </div> -->
+  <CatalogFilter class="filters" />
+  <p class="items__number">Количество товаров: <s>много нихуя</s></p>
+  <div class="items">
+    <ItemCard />
+    <ItemCard />
+    <ItemCard />
+    <ItemCard />
+    <ItemCard />
+    <ItemCard />
+    <ItemCard />
+    <ItemCard />
   </div>
 </template>
 
-<script lang="ts" setup>
+<script setup lang="ts">
 import BurgerButton from "@/shared/button/BurgerButton.vue";
-
-const options = ["Rating", "Price"];
-const selectedCity = "Moscow";
-const area = "";
+import CatalogFilter from "@/widgets/main/Catalog/CatalogFilter.vue";
+import ItemCard from "@/widgets/main/Catalog/ItemCard.vue";
 </script>
 
 <style scoped>
@@ -47,5 +40,22 @@ const area = "";
 
 .burger {
   padding: 24px 16px 24px 0;
+}
+.filters {
+  padding-top: 40px;
+}
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  height: 100%;
+  gap: 16px;
+  padding: 24px 16px 0 16px;
+}
+.items__number {
+  padding-left: 13px;
+  padding-top: 24px;
+  font-size: 16px;
 }
 </style>

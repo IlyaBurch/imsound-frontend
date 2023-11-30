@@ -1,6 +1,6 @@
 <template>
   <div>
-    <button class="menu" :class="{ active: isActive }" @click="active">
+    <button class="menu" :class="{ active: state }" @click="activation">
       <svg viewBox="0 0 64 48">
         <path d="M19,15 L45,15 C70,15 58,-2 49.0177126,7 L19,37"></path>
         <path d="M19,24 L45,24 C61.2371586,24 57,49 41,33 L32,24"></path>
@@ -10,18 +10,22 @@
   </div>
 </template>
 
-<script lang="ts">
-import { ref } from 'vue'
+<script setup lang="ts">
+import { ref, watch, watchEffect } from "vue";
+import { useUIStore } from "@/stores/ui.ts";
 
-export default {
-  setup() {
-    const isActive = ref(false)
-    function active() {
-      this.isActive = !this.isActive
-    }
-    return { isActive, active }
-  }
-}
+// export default {
+//   setup() {
+let store = useUIStore();
+let state = ref(store.isActive);
+
+watchEffect(() => (state.value = store.isActive));
+
+const activation = store.activation;
+
+// return { state, activation };
+//   },
+// };
 </script>
 
 <style lang="scss" scoped>
@@ -52,8 +56,10 @@ export default {
     position: absolute;
     path {
       transition:
-        stroke-dasharray var(--duration, 0.85s) var(--easing, ease) var(--delay, 0s),
-        stroke-dashoffset var(--duration, 0.85s) var(--easing, ease) var(--delay, 0s);
+        stroke-dasharray var(--duration, 0.85s) var(--easing, ease)
+          var(--delay, 0s),
+        stroke-dashoffset var(--duration, 0.85s) var(--easing, ease)
+          var(--delay, 0s);
       stroke-dasharray: var(--array-1, 26px) var(--array-2, 100px);
       stroke-dashoffset: var(--offset, 126px);
       transform: translateZ(0);

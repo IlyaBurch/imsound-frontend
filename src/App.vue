@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import HeaderMenu from "@/widgets/header/HeaderMenu.vue";
 import RouterPage from "./pages/RouterPage.vue";
+// import type HeaderMenu from "./widgets/header/HeaderMenu.vue";
+import HeaderMenu from "./widgets/header/HeaderMenu.vue";
 </script>
 
 <template>
   <div class="main">
-    <main>
-      <RouterPage />
-    </main>
+    <header class="sticky">
+      <HeaderMenu />
+    </header>
+    <RouterPage />
     <footer></footer>
   </div>
 </template>
@@ -19,5 +21,10 @@ import RouterPage from "./pages/RouterPage.vue";
 }
 .main {
   font-family: Raleway, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+.sticky {
+  position: sticky;
 }
 </style>
