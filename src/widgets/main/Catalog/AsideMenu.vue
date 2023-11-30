@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { watchEffect, ref } from "vue";
-import { useUIStore } from "@/stores/ui.ts";
+import { useUIStore } from "@/stores/ui";
 
 export default {
   setup() {
