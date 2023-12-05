@@ -3,15 +3,18 @@
     <router-link to="/catalog">Каталог</router-link>
   </aside>
   <div class="main">
-    <p>тут будет баннер</p>
+    <p>{{ data }}</p>
+    <button @click="getData">ДАЙ МНЕ ДАННЫЕ</button>
   </div>
 </template>
 
 <script setup lang="ts">
-import BurgerButton from "@/shared/button/BurgerButton.vue";
+import { useCatalogStore } from "@/stores/catalog";
+import { ref } from "vue";
+
+const api = useCatalogStore();
+const data = ref(api.data);
+const getData = api.getData;
 </script>
 
-<style scoped>
-.main {
-}
-</style>
+<style scoped></style>
