@@ -4,7 +4,7 @@ import getCatalog from '@/shared/api/getCatalog';
 import axios from 'axios';
 
 export const useCatalogStore = defineStore('catalog', ()=> {
-  const data = ref(null);
+  let data = ref({});
   async function getData () {
     try {
       // https://dummyjson.com/products/1 - dummy json
@@ -15,5 +15,6 @@ export const useCatalogStore = defineStore('catalog', ()=> {
       console.error('Error fetching data:', error)
     }
   }
-  return {data, getData}
+  const catalog = computed(() => getData)
+  return {data, getData, catalog}
 })

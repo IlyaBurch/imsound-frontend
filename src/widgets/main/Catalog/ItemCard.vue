@@ -13,6 +13,13 @@
 
 <script setup lang="ts">
 import BaseButton from "@/shared/button/BaseButton.vue";
+import { useCatalogStore } from "@/stores/catalog";
+import { ref } from "vue";
+
+const api = useCatalogStore();
+const data = ref(api.data);
+const data1 = "ИДИ НАХУЙ";
+const getData = api.getData;
 </script>
 
 <style scoped>
