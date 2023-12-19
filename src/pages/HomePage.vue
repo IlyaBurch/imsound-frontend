@@ -24,6 +24,7 @@ import { computed, onBeforeMount, onMounted, ref, watchEffect } from "vue";
 //   getData();
 //   data1.value = api.data;
 //   // watchEffect(() => (data = ref(api.data)));
+//TODO: 1
 // });
 
 const api = useCatalogStore();
