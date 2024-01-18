@@ -6,7 +6,7 @@
     <p v-if="(isLoading = ref(false))">loading</p>
     <p v-if="isLoading">{{ data }}</p>
     <!-- <button @click="getData">ДАЙ МНЕ ДАННЫЕ</button> -->
-    <catalog-widget />
+    <!-- <catalog-widget /> -->
   </div>
 </template>
 
