@@ -4,8 +4,8 @@
       <img class="item__pic" src="@/abbey-road.webp" />
     </picture>
     <section>
-      <p class="item__name">Abbey Road</p>
-      <p class="item__price">100500 р.</p>
+      <p class="item__name">{{data.name}}</p>
+      <p class="item__price">{{data.price}}</p>
     </section>
     <BaseButton>Купить</BaseButton>
   </article>
@@ -13,13 +13,9 @@
 
 <script setup lang="ts">
 import BaseButton from "@/shared/button/BaseButton.vue";
-import { useCatalogStore } from "@/stores/catalog";
 import { ref } from "vue";
 
-const api = useCatalogStore();
-const data = ref(api.data);
-const data1 = "ИДИ НАХУЙ";
-const getData = api.getData;
+const props = defineProps(['data']);
 </script>
 
 <style scoped>

@@ -2,9 +2,10 @@
   <ProgressSpinner v-if="isLoading"/>
   <div v-else>
     <CatalogFilter class="filters" />
-    <p class="items__number">Количество товаров: <s>{{data}}</s></p>
-    <div class="items">
-      <ItemCard />
+    <p class="items__number">Количество товаров: {{data?.count}}</p>
+    <p>{{ itemsList }}</p>
+    <div class="items" >
+      <ItemCard v-for="item in data?.results.product_list" :data="item"/>
     </div>
   </div>
 </template>
@@ -16,11 +17,11 @@ import ItemCard from "@/widgets/main/Catalog/ItemCard.vue";
 import ProgressSpinner from 'primevue/progressspinner';
 
 import { getCatalogData } from "@/shared/api/getCatalog";
-import type { CatalogData } from "@/shared/api/getCatalog";
+import type { CatalogData,Category,Subcategory,Manufacturer, Product, ApiResponse  } from "@/shared/api/getCatalog";
 
-let data = ref<CatalogData | any>(null);
+let data = ref< ApiResponse | null>(null);
 let isLoading = ref(true);
-// const getData = getCatalogData;
+// const getData = getCatalogData;data.results.product_list
 
 const fetchData = async () => {
   console.log('fetchData is called');
@@ -45,6 +46,8 @@ const fetchData = async () => {
 onMounted(() => {
   fetchData()
 })
+
+const itemsList = data.value?.results.product_list
 </script>
 
 <style scoped>
