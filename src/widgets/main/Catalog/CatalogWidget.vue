@@ -1,5 +1,7 @@
 <template>
-  <ProgressSpinner v-if="isLoading"/>
+  <div class="catalog__loader" v-if="isLoading">
+    <ProgressSpinner/>
+  </div>
   <div v-else>
     <CatalogFilter class="filters" />
     <p class="items__number">Количество товаров: {{data?.count}}</p>
@@ -68,5 +70,11 @@ const itemsList = data.value?.results.product_list
   padding-top: 24px;
   font-size: 16px;
 }
+.catalog__loader {
+  display: grid;
+  place-items: center;
+  height: calc(100dvh - 86px);
+}
+
 </style>
 

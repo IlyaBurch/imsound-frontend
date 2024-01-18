@@ -18,6 +18,7 @@ import AsideMenu from "../main/Catalog/AsideMenu.vue";
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 2px solid black;
   // position: sticky;
   // top: 15px;
 }
