@@ -77,10 +77,12 @@ export type CatalogData = {
   }
 }
 
-export const getCatalogData = (): Promise<CatalogData | any>  => {
+
+
+export const getCatalogData = (itemsCount = '8'): Promise<CatalogData | any>  => {
   return fetch(`${API_BASE_URL}/catalog`, {
     headers: {
-      'PAGINATIONPARAM': '70',
+      'PAGINATIONPARAM': itemsCount,
     }})
     .then(async (response) => {
       if (!response.ok) {

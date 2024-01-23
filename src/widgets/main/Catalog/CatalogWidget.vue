@@ -33,9 +33,8 @@ const fetchData = async () => {
   
   isLoading.value = true;
 
-
   try {
-    const response = await getCatalogData();
+    const response = await getCatalogData('10');
     console.log('Response from server:', response);
 
     if (response) {

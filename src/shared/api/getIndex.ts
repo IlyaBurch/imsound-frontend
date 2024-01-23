@@ -1,32 +1,22 @@
 const API_BASE_URL = import.meta.env.VITE_APP_API_BASE_URL;
 console.log('API_BASE_URL:', API_BASE_URL);
 
-export interface IndexResponse{
-  breadcrumbs:       Array<string[]>;
-  products_in_cart:  number;
-  categories:        Category[];
-  subcategories:     Subcategory[];
-  active_sliders:    ActiveSlider[];
-  featured_products: FeaturedProduct[];
-  company_info:      Info[];
-  clients_info:      Info[];
-}
-
-export interface ActiveSlider {
-  id:        number;
-  image:     string;
-  title:     string;
-  subtitle:  string;
-  alt_text:  string;
-  is_active: boolean;
+export interface IndexResponse {
+  breadcrumbs:         Array<string[]>;
+  products_in_cart:    number;
+  categories:          Category[];
+  subcategories:       Subcategory[];
+  sliders_and_banners: SlidersAndBanners;
+  featured_products:   FeaturedProduct[];
+  company_info:        Info[];
+  clients_info:        Info[];
 }
 
 export interface Category {
-  id:               number;
-  name:             string;
-  description:      null | string;
-  slug:             string;
-  parent_category?: number;
+  id:          number;
+  name:        string;
+  description: null;
+  slug:        string;
 }
 
 export interface Info {
@@ -57,10 +47,35 @@ export interface FeaturedProduct {
   tags:                any[];
 }
 
+export interface SlidersAndBanners {
+  sliders: Slider[];
+  banners: Banner[];
+}
+
+export interface Banner {
+  id:              number;
+  name:            string;
+  description:     null | string;
+  slug:            string;
+  image:           null | string;
+  is_index_banner: boolean;
+  parent_category: number;
+}
+
+export interface Slider {
+  id:        number;
+  image:     string;
+  title:     string;
+  subtitle:  string;
+  alt_text:  string;
+  is_active: boolean;
+}
+
 export interface Subcategory {
   category_name: string;
-  subcategories: Category[];
+  subcategories: Banner[];
 }
+
 
 export const getIndexData = (): Promise<IndexResponse| any>  => {
   return fetch(`${API_BASE_URL}/index`)
