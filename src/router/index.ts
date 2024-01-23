@@ -20,14 +20,6 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../pages/CatalogPage.vue')
     },
-    {
-      path: '/catalog-test',
-      name: 'catalog-test',
-      meta: {
-        title: 'IMSOUND || Каталог'
-      },
-      component: () => import('../pages/CatalogTest.vue')
-    },
     // {
     //   path: '/cart',
     //   name: 'cart',

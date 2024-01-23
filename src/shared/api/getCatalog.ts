@@ -1,4 +1,4 @@
-import * as axios from "axios";
+import axios from "axios";
 
 const API_BASE_URL = import.meta.env.VITE_APP_API_BASE_URL;
 console.log('API_BASE_URL:', API_BASE_URL);
@@ -40,7 +40,7 @@ export interface Product {
   category: number;
   sub_category: number;
   manufacturer: number;
-  tags: any[]; // Замените any на тип тегов, если они известны
+  tags: any[]; 
 }
 
 export interface ApiResponse {
@@ -78,15 +78,14 @@ export type CatalogData = {
 }
 
 export const getCatalogData = (): Promise<CatalogData | any>  => {
-  return fetch(`${API_BASE_URL}/catalog`)
+  return fetch(`${API_BASE_URL}/catalog`, {
+    headers: {
+      'PAGINATIONPARAM': '70',
+    }})
     .then(async (response) => {
       if (!response.ok) {
         throw new Error(`Error fetching data: ${response.statusText}`);
       }
-      // const responseData = await response.json();
-      // console.log('Raw data from server:', responseData); // Добавьте эту строку для логирования
-
-      // return responseData;
       try {
         const responseData = await response.json();
         console.log('Parsed data from server:', responseData);
@@ -103,5 +102,5 @@ export const getCatalogData = (): Promise<CatalogData | any>  => {
 };
 
 export default getCatalogData;
-// const catalog = await getCatalog();
+
 

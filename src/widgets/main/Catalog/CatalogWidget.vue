@@ -9,17 +9,20 @@
     <div class="items" >
       <ItemCard v-for="item in data?.results.product_list" :data="item"/>
     </div>
+    <Paginator/>
   </div>
 </template>
 
 <script setup lang="ts">
-import {computed, onBeforeMount, onMounted, ref, watchEffect} from 'vue'
+import {onMounted, ref} from 'vue'
 import CatalogFilter from "@/widgets/main/Catalog/CatalogFilter.vue";
 import ItemCard from "@/widgets/main/Catalog/ItemCard.vue";
 import ProgressSpinner from 'primevue/progressspinner';
+import Paginator from 'primevue/paginator';
+
 
 import { getCatalogData } from "@/shared/api/getCatalog";
-import type { CatalogData,Category,Subcategory,Manufacturer, Product, ApiResponse  } from "@/shared/api/getCatalog";
+import type { ApiResponse  } from "@/shared/api/getCatalog";
 
 let data = ref< ApiResponse | null>(null);
 let isLoading = ref(true);

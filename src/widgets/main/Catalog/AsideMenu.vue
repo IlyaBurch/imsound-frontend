@@ -7,9 +7,6 @@
       <router-link to="/catalog" @click="activation">
         <Button link>Каталог</Button>
       </router-link>
-      <router-link to="/catalog-test" @click="activation">
-        <Button link>Каталог test</Button>
-      </router-link>
     </div>
   </Teleport>
 </template>
