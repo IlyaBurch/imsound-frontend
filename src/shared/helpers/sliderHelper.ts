@@ -9,22 +9,22 @@ import type { IndexResponse } from "../api/getIndex";
 //     }
 //     return arr
 
-export const extractImages = async (): Promise<string[]> => {
+export const extractImages = async (): Promise<Object> => {
   try {
     // Получаем данные из getIndexData
     const indexData: IndexResponse = await getIndexData();
 
     // Инициализируем массив для хранения всех значений "image"
-    const allImages: string[] = [];
+    // const allImages: string[] = [];
 
     // Перебираем слайдеры
-    if (indexData?.sliders_and_banners?.sliders) {
-      indexData.sliders_and_banners.sliders.forEach((slider) => {
-        if (slider?.image) {
-          allImages.push('https://imsound.ru/'+slider.image);
-        }
-      });
-    }
+    // if (indexData?.sliders_and_banners?.sliders) {
+    //   indexData.sliders_and_banners.sliders.forEach((slider) => {
+    //     if (slider?.image) {
+    //       allImages.push('https://imsound.ru'+slider.image);
+    //     }
+    //   });
+    // }
 
     // // Перебираем баннеры
     // if (indexData?.sliders_and_banners?.banners) {
@@ -36,7 +36,7 @@ export const extractImages = async (): Promise<string[]> => {
     // }
 
     // Возвращаем массив из всех значений "image"
-    return allImages;
+    return indexData?.sliders_and_banners?.sliders;
   } catch (error) {
     // Обрабатываем ошибку, если произошла
     console.error('Error extracting images:', error);
@@ -44,4 +44,9 @@ export const extractImages = async (): Promise<string[]> => {
   }
 };
 
-// Пример использования
+const PhotoService = getIndexData();
+
+export const getImages = () => Promise.resolve(getIndexData)
+// = PhotoService.then(data => data.sliders_and_banners.sliders)
+
+//TODO: разобраться с ебучим primevue и починить галлерею

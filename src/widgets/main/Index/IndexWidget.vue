@@ -1,24 +1,24 @@
 <template>
   <div v-if="isLoading"></div>
   <div v-else>
-    <Galleria :value="slides" :responsiveOptions="responsiveOptions" :numVisible="5" containerStyle="max-width: 640px">
-      <template #item="slotProps">
-        <img :src="slotProps.item.itemImageSrc" :alt="slotProps.item.alt" style="width: 100%" />
-      </template>
-      <template #thumbnail="slotProps">
-        <img :src="slotProps.item.thumbnailImageSrc" :alt="slotProps.item.alt" />
-      </template>
-    </Galleria>
+    <Galleria :value="slides" :responsiveOptions="responsiveOptions" :numVisible="5" :circular="true" containerStyle="max-width: 640px"
+    :showItemNavigators="true" :showThumbnails="false" :showItemNavigatorsOnHover="true" :showIndicators="true">
+    <template #item="slotProps">
+        <a href="https://imsound.vercel.app/cart"><img :src="'https://imsound.ru'+slotProps.item.image" :alt="slotProps.item.alt" style="width: 100%; display: block;" /></a>
+    </template>
+</Galleria>
   </div>
+  <!-- <img src="https://imsound.ru/media/slider_images/home_slider_bit_Iyqj0R3.png" alt="" srcset=""> -->
 </template>
 
 <script setup lang="ts">
   import { onMounted, ref } from 'vue';
   import Galleria from 'primevue/galleria';
-  import {extractImages} from '@/shared/helpers/sliderHelper';
+  import {extractImages, getImages} from '@/shared/helpers/sliderHelper';
+
 
   const isLoading = ref(true)
-  let slides: any = [];
+  let slides: any = {};
 
   const responsiveOptions = ref([
     {
@@ -32,8 +32,10 @@
 ]);
 
   onMounted(() => {
+    // getImages().then((data) => (slides.value = data.sliders_and_banners.sliders));
     extractImages().then((images) => {
     slides = images
+    console.log(slides)
     isLoading.value = false;
 
 }).catch((error) => {

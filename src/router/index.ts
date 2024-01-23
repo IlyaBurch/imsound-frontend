@@ -20,15 +20,15 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../pages/CatalogPage.vue')
     },
-    // {
-    //   path: '/cart',
-    //   name: 'cart',
-    //   meta: {
-    //     title: 'IMSOUND || Корзина'
-    //   },
-    //   component: () => import('../pages/CartPage.vue')
+    {
+      path: '/cart',
+      name: 'cart',
+      meta: {
+        title: 'IMSOUND || Корзина'
+      },
+      component: () => import('../pages/CartPage.vue')
     
-    // }
+    }
   ]})
 
   router.beforeEach((to, from) => {

@@ -1,6 +1,6 @@
 <template>
     <div>
-
+        ВЖУХ И ТЫ ПЕТУХ
     </div>
 </template>
 
