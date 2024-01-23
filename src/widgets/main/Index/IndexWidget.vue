@@ -4,7 +4,7 @@
     <Galleria :value="slides" :responsiveOptions="responsiveOptions" :numVisible="5" :circular="true" containerStyle="max-width: 640px"
     :showItemNavigators="true" :showThumbnails="false" :showItemNavigatorsOnHover="true" :showIndicators="true">
     <template #item="slotProps">
-        <a href="https://imsound.vercel.app/cart"><img :src="'https://imsound.ru'+slotProps.item.image" :alt="slotProps.item.alt" style="width: 100%; display: block;" /></a>
+        <router-link to="/cart" @click="activation"><img :src="'https://imsound.ru'+slotProps.item.image" :alt="slotProps.item.alt" style="width: 100%; display: block;" /></router-link>
     </template>
 </Galleria>
   </div>
