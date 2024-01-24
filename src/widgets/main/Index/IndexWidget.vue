@@ -1,71 +1,67 @@
 <template>
-  <div v-if="isLoading"></div>
-  <div v-else>
-    <Galleria :value="slides" :responsiveOptions="responsiveOptions" :numVisible="5" :circular="true" containerStyle="max-width: 640px"
-    :showItemNavigators="true" :showThumbnails="false" :showItemNavigatorsOnHover="true" :showIndicators="true">
-    <template #item="slotProps">
-        <router-link to="/cart">
-          <img :src="'https://imsound.ru'+slotProps.item.image" :alt="slotProps.item.alt" style="width: 100%; display: block;" />
-        </router-link>
+  <swiper-container v-if="isLoading"
+    :slides-per-view="1"
+    :space-between="spaceBetween"
+    :centered-slides="true"
+    :pagination="{
+      hideOnClick: true
+    }"
+    :breakpoints="{
+      320:{
+        slidesPerVies: 1,
+      },
+      768: {
+        slidesPerView: 1,
+      },
+    }"
+    @swiperprogress="onProgress"
+    @swiperslidechange="onSlideChange"
+  >
+    <template v-for="slide in slides" key="slide.id">
+      <swiper-slide>
+        <img :src="'https://imsound.ru'+slide.image" class="image">
+      </swiper-slide>
     </template>
-</Galleria>
-  </div>
-  <!-- <img src="https://imsound.ru/media/slider_images/home_slider_bit_Iyqj0R3.png" alt="" srcset=""> -->
+  </swiper-container>
 </template>
 
 <script setup lang="ts">
   import { onMounted, ref } from 'vue';
-  import Galleria from 'primevue/galleria';
-  import {extractImages, getImages} from '@/shared/helpers/sliderHelper';
+  import 'swiper/swiper-bundle.css';
+  import {extractImages} from '@/shared/helpers/sliderHelper';
 
+  const isLoading = ref(false)
+  let slides: any = ref({});
+  let onProgress: any = ref(null);
+  let onSlideChange: any = ref(null);
+  let spaceBetween: any = ref();
 
-  const isLoading = ref(true)
-  let slides: any = {};
-
-  const responsiveOptions = ref([
-    {
-        breakpoint: '1300px',
-        numVisible: 4
-    },
-    {
-        breakpoint: '575px',
-        numVisible: 1
-    }
-]);
 
   onMounted(() => {
-    // getImages().then((data) => (slides.value = data.sliders_and_banners.sliders));
     extractImages().then((images) => {
-    slides = images
-    console.log(slides)
-    isLoading.value = false;
+      slides = images
+      console.log(slides)
+      isLoading.value = true;
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+    spaceBetween.value = 10;
+    onProgress.value = (e : any) => {
+    const [swiper, progress] = e.detail;
+      console.log(progress)
+    };
 
-}).catch((error) => {
-  console.error('Error:', error);
-});
-  })
-  // import { ref, onMounted, inject, computed } from "vue";
-  // import Galleria from 'primevue/galleria';
-  
-  // const slidesInfo : any = inject('slidesInfo')
-  // const imagesArray = [];
-  
-  // const API_BASE_URL = import.meta.env.VITE_APP_API_BASE_URL;
-
-  // console.log(slidesInfo)
-  
-  
-  // let imageData = computed( () => {
-  //   let slides = slidesInfo.value;
-  //   const imageUrl = slides?.forEach((element: { image: any; }) => {
-  //     imagesArray.push(API_BASE_URL+element.image)
-  //   });
-  //   return imageUrl;
-  // })
-  // console.log(imageData)
+    onSlideChange.value = (e : any) => {
+      console.log('slide changed')
+    }
+  });
 </script>
 
 <style scoped>
-
+  .image{
+    width: 100%;
+    height: 250px;
+  }
 </style>
 
