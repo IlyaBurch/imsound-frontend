@@ -1,5 +1,4 @@
 <template>
-  <Teleport to="body">
     <div v-if="state" class="modal">
       <router-link to="/" @click="activation">
         <Button link>Главная</Button>
@@ -8,7 +7,6 @@
         <Button link>Каталог</Button>
       </router-link>
     </div>
-  </Teleport>
 </template>
 
 <script lang="ts">

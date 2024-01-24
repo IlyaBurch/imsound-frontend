@@ -98,5 +98,7 @@ export const getIndexData = (): Promise<IndexResponse| any>  => {
     });
 };
 
+export const getCategory = () => Promise.resolve(getIndexData);
+
 export default getIndexData;
 

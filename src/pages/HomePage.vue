@@ -4,7 +4,8 @@
   </div>
   <main v-else class="main">
     <IndexWidget/>
-    <!-- {{ slides1 }} -->
+    <CategorySwiper/>
+    <TabContent/>
   </main>
 </template>
 
@@ -15,6 +16,8 @@
 
   import ProgressSpinner from 'primevue/progressspinner';
   import IndexWidget from '@/widgets/main/Index/IndexWidget.vue';
+  import CategorySwiper from "@/widgets/main/Index/CategorySwiper.vue";
+import TabContent from "@/widgets/main/Index/TabContent.vue";
 
   const API_BASE_URL = import.meta.env.VITE_APP_API_BASE_URL;
 
