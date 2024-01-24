@@ -1,4 +1,5 @@
 <template>
+  <Teleport to="body">
     <div v-if="state" class="modal">
       <router-link to="/" @click="activation">
         <Button link>Главная</Button>
@@ -7,6 +8,7 @@
         <Button link>Каталог</Button>
       </router-link>
     </div>
+  </Teleport>
 </template>
 
 <script lang="ts">
@@ -29,6 +31,7 @@ export default {
 <style scoped>
 .modal {
   position: absolute;
+  z-index: 1000;
   left: 0;
   top: 84px;
   background-color: white;
