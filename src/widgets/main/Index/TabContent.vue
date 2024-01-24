@@ -51,7 +51,7 @@ interface FeaturedProduct {
 }
 
 
-let slides = ref()
+let slides : any = ref({})
 let isLoading = ref(true)
 
 onMounted(() => {
